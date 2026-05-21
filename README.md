@@ -1,34 +1,19 @@
 # terraform-google-dataproc
 
 ## Description
-### Tagline
-This is an auto-generated module.
 
-### Detailed
-This module was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template/), which by default generates a module that simply creates a GCS bucket. As the module develops, this README should be updated.
+The Terraform module handles the creation of Dataproc Cluster on Google Cloud.
 
-The resources/services/activations/deletions that this module will create/trigger are:
+## Assumptions and prerequisites
+This module assumes that below mentioned prerequisites are in place before consuming the module.
 
-- Create a GCS bucket with the provided name
-
-### PreDeploy
-To deploy this blueprint you must have an active billing account and billing permissions.
-
-## Architecture
-![alt text for diagram](https://www.link-to-architecture-diagram.com)
-1. Architecture description step no. 1
-2. Architecture description step no. 2
-3. Architecture description step no. N
+- To deploy this blueprint you must have an active billing account and billing permissions.
+- APIs are enabled.
+- Permissions are available.
 
 ## Documentation
-- [Hosting a Static Website](https://cloud.google.com/storage/docs/hosting-static-website)
 
-## Deployment Duration
-Configuration: X mins
-Deployment: Y mins
-
-## Cost
-[Blueprint cost details](https://cloud.google.com/products/calculator?id=02fb0c45-cc29-4567-8cc6-f72ac9024add)
+[Dataproc Cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dataproc_cluster)
 
 ## Usage
 
@@ -36,11 +21,11 @@ Basic usage of this module is as follows:
 
 ```hcl
 module "dataproc" {
-  source  = "terraform-google-modules/dataproc/google"
+  source = "terraform-google-modules/dataproc/google"
   version = "~> 0.1"
-
-  project_id  = "<PROJECT ID>"
-  bucket_name = "gcs-test-bucket"
+  project_id = "<PROJECT ID>"
+  name       = "simple-example-cluster"
+  region     = "us-central1"
 }
 ```
 
@@ -87,7 +72,7 @@ The following dependencies must be available:
 A service account with the following roles must be used to provision
 the resources of this module:
 
-- Storage Admin: `roles/storage.admin`
+- Dataproc Admin: `roles/dataproc.admin`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -98,7 +83,7 @@ service account with the necessary roles applied.
 A project with the following APIs enabled must be used to host the
 resources of this module:
 
-- Google Cloud Storage JSON API: `storage-api.googleapis.com`
+- Google Cloud Storage JSON API: `dataproc.googleapis.com`
 
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.

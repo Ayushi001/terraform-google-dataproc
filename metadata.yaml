@@ -24,7 +24,7 @@ spec:
     source:
       repo: sso://ospo-internal/releasing/terraform-google-dataproc/terraform-google-dataproc
       sourceType: git
-    version: 0.0.2
+    version: 0.0.3
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
@@ -234,7 +234,13 @@ spec:
               version: ">= 4.1.0"
             spec:
               outputExpr: key_id_list[0]
-              inputPath: encryption_config.kms_key_name  
+              inputPath: encryption_config.kms_key_name
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ">= 4.4"
+            spec:
+              outputExpr: email
+              inputPath: gce_cluster_config.service_account
       - name: graceful_decommission_timeout
         description: Allows graceful decommissioning when you change the number of worker nodes directly through a terraform apply. Does not affect auto scaling decommissioning from an autoscaling policy. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.
         varType: string
