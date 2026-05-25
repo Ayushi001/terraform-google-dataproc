@@ -29,7 +29,9 @@ resource "google_dataproc_cluster" "cluster" {
   name    = var.name
   project = var.project_id
   region  = var.region
-  labels  = var.labels
+
+  # User labels are not supported in Dataproc Virtual Cluster
+  labels  = var.virtual_cluster_config == null ? var.labels : null
 
   graceful_decommission_timeout = var.graceful_decommission_timeout
 
