@@ -24,7 +24,7 @@ spec:
     source:
       repo: sso://ospo-internal/releasing/terraform-google-dataproc/terraform-google-dataproc
       sourceType: git
-    version: 0.0.4
+    version: 0.0.5
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
